@@ -26,10 +26,12 @@ const styles = StyleSheet.create({
 
   listContainer: {
     marginVertical: 16,
+    marginBottom: 32,
   },
 
   title: {
     fontWeight: "regular",
-    fontSize: 16,
+    fontSize: 30,
+    textAlign: "center",
   },
 });
