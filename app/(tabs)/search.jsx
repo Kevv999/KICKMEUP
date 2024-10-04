@@ -67,11 +67,10 @@ export default function Search() {
               onChangeText={setName}
             ></TextInput>
           </View>
+          {isFocused && (
+            <CustomButton title="Search" func={sneakerHandler}></CustomButton>
+          )}
         </View>
-
-        {isFocused && (
-          <CustomButton title="Search" func={sneakerHandler}></CustomButton>
-        )}
       </KeyboardAvoidingView>
     </>
   );
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 16,
     fontSize: 16,
-    marginTop: 16,
+    marginVertical: 2,
   },
   inputContainer: {
     marginBottom: "auto",

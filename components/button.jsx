@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     borderRadius: 16,
-    backgroundColor: "black",
+    backgroundColor: "#161622",
     marginTop: "auto",
   },
 });

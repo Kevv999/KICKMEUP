@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, Image } from "react-native";
+import { ScrollView, Image } from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { addDataFromResponse } from "../../types/sneaker";
