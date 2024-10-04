@@ -5,6 +5,7 @@ import {
   FlatList,
   StyleSheet,
   ScrollView,
+  Linking,
 } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -15,8 +16,6 @@ export default function Search() {
   const { query } = useLocalSearchParams();
   const item = JSON.parse(decodeURIComponent(query));
   const [prices, setPrices] = useState([]);
-  /*const [info, setInfo] = useState();
-  const [pictures, setPictures] = useState([]);*/
 
   useEffect(() => {
     axios
@@ -49,49 +48,35 @@ export default function Search() {
     <View style={styles.scroll}>
       <ScrollView>
         <View style={styles.container}>
-          {/*pictures.length ? (
-            <FlatList
-              data={pictures}
-              numColumns={2}
-              renderItem={({ item, index }) => (
-                <Image
-                  style={index === 0 ? styles.firstImage : styles.gridImage}
-                  source={{ uri: item }}
-                ></Image>
-              )}
-              scrollEnabled={false}
-            ></FlatList>
-          ) : (
-            <Image source={{ uri: item.image }} style={styles.image}></Image>
-          )*/}
           <Image source={{ uri: item.image }} style={styles.image}></Image>
 
           <Text style={[styles.underText, styles.name]}>{item.name}</Text>
 
           <FlatList
             data={prices}
+            scrollEnabled={false}
             renderItem={({ item }) => (
               <View style={styles.priceSizeContainer}>
+                <Text style={styles.underText}> {item.size}</Text>
                 <Text style={styles.underText}>
                   $
                   {item.price
                     .toString()
                     .slice(0, item.price.toString().length - 2)}
                 </Text>
-                <Text style={styles.underText}> {item.size}</Text>
               </View>
             )}
-            horizontal
           ></FlatList>
-
-          {/*<Text style={styles.info}>{info}</Text>*/}
-
-          <CustomButton
-            title="BUY"
-            func={console.log("Pressed")}
-          ></CustomButton>
         </View>
       </ScrollView>
+      <View style={styles.container}>
+        <CustomButton
+          title="BUY"
+          func={() => {
+            Linking.openURL(`https://goat.com/sneakers/${item.slug}`);
+          }}
+        ></CustomButton>
+      </View>
     </View>
   );
 }
@@ -103,43 +88,27 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    borderRadius: 16,
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 2.84,
-    padding: 8,
+    padding: 20,
   },
   underText: {
-    textAlign: "center",
-    justifyContent: "center",
     fontSize: 20,
   },
   name: {
-    marginVertical: 12,
+    marginBottom: 24,
   },
 
   image: {
     width: "100%",
-    height: 200,
+    height: 160,
     marginBottom: 10,
   },
-  gridImage: {
-    height: 150,
-    width: "50%",
-  },
-  firstImage: {
-    width: "100%",
-    height: 250,
-  },
   priceSizeContainer: {
-    borderRadius: 4,
-    padding: 4,
-    margin: 4,
-  },
-  info: {
-    fontSize: 14,
-    marginVertical: 16,
+    flex: 1,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    paddingBottom: 2,
+    marginBottom: 12,
   },
 });
