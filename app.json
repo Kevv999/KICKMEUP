@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "KickMeUp",
+    "slug": "KickMeUp",
+    "scheme": "KickMeUp",
+    "version": "1.0.0",
+    "plugins": ["expo-router"]
+  }
+}
