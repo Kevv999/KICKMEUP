@@ -1,9 +1,8 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Image } from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { addDataFromResponse } from "../../types/sneaker";
 import ProductGrid from "../../components/productGrid";
-
 export default function Home() {
   const [justDropped, setJustDropped] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -39,6 +38,10 @@ export default function Home() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <ProductGrid title="Just Dropped" item={justDropped}></ProductGrid>
+      <Image
+        source={require("../../assets/img/image.png")}
+        style={{ width: "100%", height: 200 }}
+      ></Image>
       <ProductGrid title="Popular" item={popular}></ProductGrid>
     </ScrollView>
   );
