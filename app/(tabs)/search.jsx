@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { addDataFromResponse } from "../../types/sneaker";
 import Product from "../../components/product";
@@ -11,12 +11,19 @@ import {
   View,
   StyleSheet,
   FlatList,
+  Alert,
 } from "react-native";
 
 export default function Search() {
   const [isFocused, setIsFocused] = useState(false);
   const [sneakers, setSneakers] = useState([]);
   const [name, setName] = useState("");
+
+  useEffect(() => {
+    if (sneakers.length === 0 && name.length != 0) {
+      Alert.alert("Sneaker " + `"` + name + `"` + " was not found.");
+    }
+  }, [sneakers]);
 
   function sneakerHandler() {
     axios
